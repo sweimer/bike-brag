@@ -1,0 +1,235 @@
+@font-face {
+  font-family: 'Brat';
+  src: url('assets/fonts/brat/brat.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Thinking';
+  src: url('assets/fonts/Thinking.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+// Font size variables
+$base-font-size: 18px;
+$base-font-family: sans-serif;
+
+// Color variables
+$white: #ffffff;
+$black: #000000;
+$primary01: #77473B;
+$primary02: #F3BC7D;
+$primary03: #F5EACF;
+$primary04: #CEB793;
+$primary05: #595A41;
+$primary06: #345057;
+$overlay01: rgba(119, 71, 59, 0.8);
+$overlay02: rgba(243, 188, 125, 0.8);
+$overlay03: rgba(245, 234, 207, 0.8);
+$overlay04: rgba(206, 183, 147, 0.8);
+$overlay05: rgba(89, 90, 65, 0.8);
+$overlay06: rgba(52, 80, 87, 0.8);
+
+.bg-primary01 {
+  background-color: $primary01;
+  color: $white;
+}
+.bg-primary02 {
+  background-color: $primary02;
+  color: $black;
+}
+.bg-primary03 {
+  background-color: $primary03;
+  color: $black;
+}
+.bg-primary04 {
+  background-color: $primary04;
+  color: $black;
+}
+.bg-primary05 {
+  background-color: $primary05;
+  color: $white;
+}
+.bg-primary06 {
+  background-color: $primary06;
+  color: $white;
+}
+.bg-overlay01 {
+  background-color: $overlay01;
+  color: $white;
+}
+.bg-overlay02 {
+  background-color: $overlay02;
+  color: $black;
+}
+.bg-overlay03 {
+  background-color: $overlay03;
+  color: $black;
+}
+.bg-overlay04 {
+  background-color: $overlay04;
+  color: $black;
+}
+.bg-overlay05 {
+  background-color: $overlay05;
+  color: $white;
+}
+.bg-overlay06 {
+  background-color: $overlay06;
+  color: $white;
+}
+
+// Parallax utility class
+.parallax {
+  position: relative;
+  min-height: 60vh;
+  width: 100%;
+  background-image: var(--parallax-bg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+
+  article {
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+  }
+}
+
+h1 {
+  font-size: 4em;
+  font-family: 'Thinking';
+  font-weight: normal;
+  line-height: 0;
+  text-shadow: 10px 10px 8px rgba(0,0,0,0.9);
+
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding-left: 20px;
+  }
+}
+h2 {
+  font-size: 3em;
+  font-family: 'Thinking';
+  font-weight: bold;
+  line-height: 0;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding-left: 20px;
+  }
+}
+h3 {
+  font-size: 2em;
+  font-family: 'Thinking';
+  line-height: 0;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding-left: 20px;
+  }
+}
+h4 {
+  font-size: 1.25em;
+  font-family: 'Thinking';
+  line-height: 0;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding-left: 20px;
+  }
+}
+
+body {
+  margin: 0 !important;
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+}
+
+header {
+  background-color: $primary01;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background-image: url(https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/517413300_10163761640637658_6764631388772837990_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=106&ccb=1-7&_nc_sid=f727a1&_nc_ohc=f9FpUHM5OV4Q7kNvwFrOueg&_nc_oc=Adm5Q6kWkQZLO7k3HHoSrzUAZ62Vg7iz4-kljMkYWVkYaGipQ3RfXcg_69WRC6u-rK8Jdq-4dWClhu9Ad8rl2Rnn&_nc_zt=23&se=-1&_nc_ht=scontent-iad3-2.xx&_nc_gid=3J6BL5ixNPHBR-xo14sUFA&oh=00_AfVdfbHJee6XfAFThiwGZuSvX0hwjJwCKBI9aNSxW5GMQg&oe=68ABA8ED);
+  min-height: 100%;
+  position: relative;
+  background-attachment: fixed;
+  background-position: center 101%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .header-content {
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    z-index: 2;
+
+    h1 {
+      font-size: 5em;
+      line-height: 0;
+      text-shadow: 10px 10px 8px rgba(0,0,0,0.9);
+      z-index: 3;
+
+      .bigger {
+        font-size: 1.5em;
+        font-family: 'Brat';
+        padding-left: 20px;
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+
+  section {
+    width: 100%;
+    padding: 14px;
+
+    article {
+      width: 100%;
+      max-width: 1400px;
+      margin: 30px auto
+    }
+  }
+}
+
+footer {
+  background-color: $black;
+  color: $white;
+  padding: 24px;
+}
+
+
+
+
+
+@media screen and (max-width: 650px) {
+
+}
