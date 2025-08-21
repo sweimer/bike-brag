@@ -1,25 +1,27 @@
-<h2>Bike<span class="bigger">Brag</span> Section</h2>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-  anim id est laborum.
-</p>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-  anim id est laborum.
-</p>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-  anim id est laborum.
-</p>
+<div class="bragcard">
+  <div *ngFor="let item of bragItems; let i = index" class="bragcard">
+    <section [ngClass]="'bg-primary0' + ((i % 6) + 1)">
+      <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
+        <h2 class="brag-title">
+          Bike <span class="bigger">Brag</span>:
+          <span class="smaller">{{ item.location }}</span>
+        </h2>
+        <div class="brag-date">{{ item.date }}</div>
+        <div class="brag-description">{{ item.description }}</div>
+      </article>
+    </section>
+    <section class="parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
+      <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
+        <iframe
+          [attr.src]="item.map"
+          width="100%"
+          height="600"
+          frameborder="0"
+          scrolling="no"
+          title="Brag Map"
+          loading="lazy">
+        </iframe>
+      </article>
+    </section>
+  </div>
+</div>

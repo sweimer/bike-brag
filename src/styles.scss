@@ -95,33 +95,35 @@ $overlay06: rgba(52, 80, 87, 0.8);
     border-radius: 8px;
     padding: 24px;
     box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+    width: 25%;
+    margin-left: 50px;
   }
 }
 
 h1 {
-  font-size: 4em;
   font-family: 'Thinking';
-  font-weight: normal;
+  font-size: 5em;
   line-height: 0;
   text-shadow: 10px 10px 8px rgba(0,0,0,0.9);
+  z-index: 3;
 
   .bigger {
-    font-size: 1.5em;
     font-family: 'Brat';
-    padding-left: 20px;
+    font-size: 1.5em;
+    padding: 0 20px;
   }
 }
 h2 {
   font-size: 3em;
   font-family: 'Thinking';
   font-weight: bold;
-  line-height: 0;
+  line-height: 1.2em;
   text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
 
   .bigger {
     font-size: 1.5em;
     font-family: 'Brat';
-    padding-left: 20px;
+    padding: 0 5px;
   }
 }
 h3 {
@@ -133,7 +135,7 @@ h3 {
   .bigger {
     font-size: 1.5em;
     font-family: 'Brat';
-    padding-left: 20px;
+    padding: 0 5px;
   }
 }
 h4 {
@@ -145,7 +147,7 @@ h4 {
   .bigger {
     font-size: 1.5em;
     font-family: 'Brat';
-    padding-left: 20px;
+    padding: 0 5px;
   }
 }
 
@@ -178,19 +180,6 @@ header {
     top: 75px;
     left: 75px;
     z-index: 2;
-
-    h1 {
-      font-size: 5em;
-      line-height: 0;
-      text-shadow: 10px 10px 8px rgba(0,0,0,0.9);
-      z-index: 3;
-
-      .bigger {
-        font-size: 1.5em;
-        font-family: 'Brat';
-        padding-left: 20px;
-      }
-    }
   }
 
   &::before {

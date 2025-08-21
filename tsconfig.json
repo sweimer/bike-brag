@@ -23,6 +23,10 @@
     "strictTemplates": true
   },
   "files": [],
+  "include": [
+    "src",
+    "declarations.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.app.json"
