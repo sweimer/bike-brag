@@ -1,5 +1,11 @@
-<div class="bragcard">
-  <div *ngFor="let item of bragItems; let i = index" class="bragcard">
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="!loading">
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="150"
+    (scrolled)="loadMore()">
+  <div *ngFor="let item of visibleBragItems; let i = index" class="bragcard">
     <section [ngClass]="'bg-primary0' + ((i % 6) + 1)">
       <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
         <h2 class="brag-title">

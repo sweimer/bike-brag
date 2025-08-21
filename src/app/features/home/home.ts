@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import Papa from 'papaparse';
 
 export interface BragItem {
@@ -17,27 +18,33 @@ export interface BragItem {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, InfiniteScrollDirective],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
 
 export class HomeComponent {
   bragItems: BragItem[] = [];
+  visibleCount = 1;
+  loading = true;
 
   constructor(
     private sanitizer: DomSanitizer,
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private cdr: ChangeDetectorRef // <-- Correct usage, no @Inject needed
+    private cdr: ChangeDetectorRef
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.loadBragItems();
     }
   }
 
+  get visibleBragItems() {
+    return this.bragItems.slice(0, this.visibleCount);
+  }
+
   loadBragItems() {
-    this.http.get('bragitems.csv', { responseType: 'text' }).subscribe(csvData => {
+    this.http.get('bragitems.csv', { responseType: 'text' }).subscribe((csvData: string) => {
       Papa.parse(csvData, {
         header: true,
         complete: (result: any) => {
@@ -49,9 +56,14 @@ export class HomeComponent {
             image: item.image,
             map: this.sanitizer.bypassSecurityTrustResourceUrl(item.map),
           }));
-          this.cdr.detectChanges(); // <-- Add this
+          this.loading = false;
+          this.cdr.detectChanges();
         }
       });
     });
+  }
+
+  loadMore() {
+    this.visibleCount += 1;
   }
 }
