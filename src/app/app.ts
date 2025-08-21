@@ -1,12 +1,41 @@
-import { Component, signal } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('bike-brag');
+  showReturnToTop = false;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.onWindowScroll.bind(this));
+    }
+  }
+
+  ngOnDestroy() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.onWindowScroll.bind(this));
+    }
+  }
+
+  onWindowScroll() {
+    if (typeof window !== 'undefined') {
+      this.showReturnToTop = window.pageYOffset > 300;
+      console.log('Scroll position:', window.pageYOffset, 'Show button:', this.showReturnToTop);
+      this.cdr.markForCheck();
+    }
+  }
+
+  scrollToTop() {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 }
