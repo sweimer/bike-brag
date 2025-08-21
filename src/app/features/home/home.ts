@@ -29,7 +29,7 @@ export class HomeComponent {
   }
 
   loadBragItems() {
-    this.http.get('assets/bragitems.csv', { responseType: 'text' }).subscribe(csvData => {
+    this.http.get('bragitems.csv', { responseType: 'text' }).subscribe(csvData => {
       Papa.parse(csvData, {
         header: true,
         complete: (result: any) => {
