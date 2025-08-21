@@ -170,7 +170,7 @@ body {
 header {
   background-color: $primary01;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 180px);
   overflow: hidden;
   color: $white;
   display: flex;
@@ -181,7 +181,7 @@ header {
   min-height: 100%;
   position: relative;
   background-attachment: fixed;
-  background-position: center 101%;
+  background-position: center calc(100% - 160px);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -201,6 +201,15 @@ header {
     height: 100%;
     z-index: 1;
   }
+}
+
+.bragStart {
+  background-color: $black;
+  color: $white;
+  padding: 24px;
+  text-align: center;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 main {

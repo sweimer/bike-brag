@@ -4,6 +4,12 @@
   </div>
 </header>
 
+<section class="bragStart">
+  <div class="bragTag">
+    <i class="fa fa-arrow-down"></i>Start <span class="bigger">Bragging</span><i class="fa fa-arrow-down"></i>
+  </div>
+</section>
+
 <main>
   <router-outlet name="primary"></router-outlet>
 </main>
@@ -12,11 +18,12 @@
   class="return-to-top"
   (click)="scrollToTop()"
   aria-label="Return to top">
-  ↑ Top
+  <i class="fa fa-arrow-up"></i>
 </button>
+
 <footer>
   <div class="bragTag">
-    Bike<span class="bigger">Brag</span>
+    Stop <span class="bigger">Bragging</span>
   </div>
 </footer>
 
