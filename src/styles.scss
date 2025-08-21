@@ -79,6 +79,16 @@ $overlay06: rgba(52, 80, 87, 0.8);
   color: $white;
 }
 
+.bragTag {
+  font-size: 4em;
+  font-family: 'Thinking';
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding: 0 5px;
+  }
+}
+
 // Parallax utility class
 .parallax {
   position: relative;
@@ -213,6 +223,7 @@ footer {
   background-color: $black;
   color: $white;
   padding: 24px;
+  text-align: center;
 }
 
 
