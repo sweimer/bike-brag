@@ -28,12 +28,24 @@ export class HomeComponent {
     this.loadBragItems();
   }
 
+  export class HomeComponent {
+  bragItems: BragItem[] = [];
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadBragItems();
+    }
+  }
+
   loadBragItems() {
     this.http.get('bragitems.csv', { responseType: 'text' }).subscribe(csvData => {
       Papa.parse(csvData, {
         header: true,
         complete: (result: any) => {
-          // Filter out empty rows
           const filtered = result.data.filter((item: any) => item.location && item.location.trim() !== '');
           this.bragItems = filtered.map((item: any) => ({
             location: item.location,
