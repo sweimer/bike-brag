@@ -44,24 +44,25 @@ export class HomeComponent {
   }
 
   loadBragItems() {
-    this.http.get('bragitems.csv', { responseType: 'text' }).subscribe((csvData: string) => {
-      Papa.parse(csvData, {
-        header: true,
-        complete: (result: any) => {
-          const filtered = result.data.filter((item: any) => item.location && item.location.trim() !== '');
-          this.bragItems = filtered.map((item: any) => ({
-            location: item.location,
-            date: item.date,
-            description: item.description,
-            image: item.image,
-            map: this.sanitizer.bypassSecurityTrustResourceUrl(item.map),
-          }));
-          this.loading = false;
-          this.cdr.detectChanges();
-        }
-      });
+  const googleSheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
+  this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
+    Papa.parse(csvData, {
+      header: true,
+      complete: (result: any) => {
+        const filtered = result.data.filter((item: any) => item.location && item.location.trim() !== '');
+        this.bragItems = filtered.map((item: any) => ({
+          location: item.location,
+          date: item.date,
+          description: item.description,
+          image: item.image,
+          map: this.sanitizer.bypassSecurityTrustResourceUrl(item.map),
+        }));
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
     });
-  }
+  });
+}
 
   loadMore() {
     this.visibleCount += 1;
