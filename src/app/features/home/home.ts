@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import Papa from 'papaparse';
 
 export interface BragItem {
@@ -12,8 +14,6 @@ export interface BragItem {
   map: SafeResourceUrl;
 }
 
-import { HttpClientModule } from '@angular/common/http';
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,13 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./home.scss'],
 })
 export class HomeComponent {
-  bragItems: BragItem[] = [];
-
-  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {
-    this.loadBragItems();
-  }
-
-  export class HomeComponent {
   bragItems: BragItem[] = [];
 
   constructor(
