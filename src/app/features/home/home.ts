@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -21,13 +21,15 @@ export interface BragItem {
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
+
 export class HomeComponent {
   bragItems: BragItem[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdr: ChangeDetectorRef // <-- Correct usage, no @Inject needed
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.loadBragItems();
@@ -47,6 +49,7 @@ export class HomeComponent {
             image: item.image,
             map: this.sanitizer.bypassSecurityTrustResourceUrl(item.map),
           }));
+          this.cdr.detectChanges(); // <-- Add this
         }
       });
     });
