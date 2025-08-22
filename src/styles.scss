@@ -250,6 +250,9 @@ main {
       max-width: 1400px;
       margin: 30px auto
     }
+    article.bragMapArticle:not(.float-in-right) {
+      opacity: 0;
+    }
   }
 }
 
