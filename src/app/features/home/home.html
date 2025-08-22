@@ -18,10 +18,9 @@
     </section>
 
     <section class="parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
-      <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
+      <article [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
         <iframe
           class="brag-iframe"
-          [ngClass]="{'float-in-right': iframeVisible[i]}"
           [attr.src]="item.map"
           width="100%"
           height="600"
