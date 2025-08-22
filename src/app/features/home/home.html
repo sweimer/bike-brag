@@ -19,17 +19,9 @@
 
     <section class="parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
       <article class="bragMapArticle" [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
-        <iframe
-          class="brag-iframe"
-          [attr.src]="item.map"
-          width="100%"
-          height="600"
-          frameborder="0"
-          scrolling="no"
-          title="Brag Map"
-          loading="lazy">
-        </iframe>
+        <div class="brag-iframe" [innerHTML]="item.map"></div>
       </article>
+      <button class="show-map-button" (click)="showMap(i)" *ngIf="!iframeVisible[i]">Show Map</button>
     </section>
   </div>
 </div>

@@ -56,7 +56,8 @@ export class HomeComponent {
             date: item.date,
             description: item.description,
             image: item.image,
-            map: this.sanitizer.bypassSecurityTrustResourceUrl(item.map),
+            map: this.sanitizer.bypassSecurityTrustHtml(item.map), // <-- change here
+            tags: item.tags,
           }));
           this.iframeVisible = new Array(this.bragItems.length).fill(false); // Initialize visibility array
           this.loading = false;
@@ -91,5 +92,10 @@ export class HomeComponent {
       );
       observer.observe(iframe);
     });
+  }
+
+  showMap(index: number): void {
+    this.iframeVisible[index] = true;
+    this.cdr.detectChanges();
   }
 }
