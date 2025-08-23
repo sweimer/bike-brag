@@ -86,19 +86,7 @@ $overlay06: rgba(52, 80, 87, 0.8);
   60% { transform: translateY(-10px); }
   80% { transform: translateY(0); }
 }
-@keyframes floatInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100vw);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-.float-in-right {
-  animation: floatInRight 1s ease-out;
-}
+
 
 .bragTag {
   font-size: 4em;

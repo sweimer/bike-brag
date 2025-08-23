@@ -1,0 +1,16 @@
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="!loading">
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="150"
+    (scrolled)="loadMore()">
+    <app-brag-card
+      *ngFor="let item of visibleBragItems; let i = index; trackBy: trackByIndex"
+      [bragItem]="item"
+      [iframeVisible]="iframeVisible[i]"
+      [primaryClass]="getPrimaryClass(i)"
+      [overlayClass]="getOverlayClass(i)">
+    </app-brag-card>
+  </div>
+</div>

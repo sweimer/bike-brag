@@ -1,0 +1,20 @@
+<section [ngClass]="primaryClass">
+  <article>
+    <h2 class="brag-title">
+      <span class="bigger">Brag</span>: <span class="smaller">{{ bragItem.location }}</span>
+    </h2>
+    <div class="brag-date"><strong>{{ bragItem.date }}</strong></div>
+    <div class="brag-description">{{ bragItem.description }}</div>
+    <div>{{ bragItem.tags }}</div>
+  </article>
+</section>
+<section class="parallax" [style.--parallax-bg]="'url(' + bragItem.image + ')'">
+  <article class="bragMapArticle" [ngClass]="[overlayClass, iframeVisible ? 'float-in-right' : '']">
+  <div class="brag-iframe">
+    <ng-container *ngIf="iframeVisible">
+      <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(bragItem.map)"></div>
+    </ng-container>
+    <button *ngIf="!iframeVisible" (click)="showMap()">Show Map</button>
+  </div>
+</article>
+</section>

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../features/home';
+import { BragCardGroup } from '../shared/brag-card-group/brag-card-group.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, outlet: 'primary' },
+  { path: '', component: BragCardGroup, outlet: 'primary' },
 ];

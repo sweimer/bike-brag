@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Home } from './home';
+import { BragCardGroup } from './brag-card-group';
 
-describe('Home', () => {
-  let component: Home;
-  let fixture: ComponentFixture<Home>;
+describe('BragCardGroup', () => {
+  let component: BragCardGroup;
+  let fixture: ComponentFixture<BragCardGroup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Home],
-    }).compileComponents();
+      imports: [BragCardGroup]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(Home);
+    fixture = TestBed.createComponent(BragCardGroup);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

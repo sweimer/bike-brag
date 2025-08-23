@@ -1,36 +1,47 @@
 import { Component, Inject, ChangeDetectorRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import Papa from 'papaparse';
-
-export interface BragItem {
-  location: string;
-  date: string;
-  description: string;
-  image: string;
-  map: SafeResourceUrl;
-}
+import { BragCardComponent, BragItem } from '../brag-card/brag-card.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-brag-card-group',
   standalone: true,
-  imports: [CommonModule, InfiniteScrollDirective],
-  templateUrl: './home.html',
-  styleUrls: ['./home.scss'],
+  imports: [CommonModule, BragCardComponent, InfiniteScrollDirective],
+  templateUrl: './brag-card-group.component.html',
+  styleUrls: ['./brag-card-group.component.scss'],
 })
-
-export class HomeComponent {
+export class BragCardGroup {
   bragItems: BragItem[] = [];
   visibleCount = 1;
   loading = true;
   iframeVisible: boolean[] = [];
+  visibleBragItems: BragItem[] = [];
+
+  trackByIndex(index: number, item: BragItem): number {
+    return index;
+  }
+
+  primaryClasses = [
+    'bg-primary01', 'bg-primary02', 'bg-primary03',
+    'bg-primary04', 'bg-primary05', 'bg-primary06'
+  ];
+  overlayClasses = [
+    'bg-overlay01', 'bg-overlay02', 'bg-overlay03',
+    'bg-overlay04', 'bg-overlay05', 'bg-overlay06'
+  ];
+
+  getPrimaryClass(index: number): string {
+    return this.primaryClasses[index % this.primaryClasses.length];
+  }
+  getOverlayClass(index: number): string {
+    return this.overlayClasses[index % this.overlayClasses.length];
+  }
 
   constructor(
-    private sanitizer: DomSanitizer,
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
     private cdr: ChangeDetectorRef
@@ -38,10 +49,6 @@ export class HomeComponent {
     if (isPlatformBrowser(this.platformId)) {
       this.loadBragItems();
     }
-  }
-
-  get visibleBragItems() {
-    return this.bragItems.slice(0, this.visibleCount);
   }
 
   loadBragItems() {
@@ -56,13 +63,16 @@ export class HomeComponent {
             date: item.date,
             description: item.description,
             image: item.image,
-            map: this.sanitizer.bypassSecurityTrustHtml(item.map), // <-- change here
+            map: item.map,
             tags: item.tags,
           }));
-          this.iframeVisible = new Array(this.bragItems.length).fill(false); // Initialize visibility array
+          if (this.iframeVisible.length === 0) {
+            this.iframeVisible = new Array(this.bragItems.length).fill(false);
+          }
+          this.visibleBragItems = this.bragItems.slice(0, this.visibleCount); // <-- update here
           this.loading = false;
           this.cdr.detectChanges();
-          setTimeout(() => this.observeIframes(), 0); // Start observing after DOM update
+          setTimeout(() => this.observeIframes(), 0);
         }
       });
     });
@@ -70,20 +80,21 @@ export class HomeComponent {
 
   loadMore() {
     this.visibleCount += 1;
-    setTimeout(() => this.observeIframes(), 0); // Re-observe after more items are shown
+    this.visibleBragItems = this.bragItems.slice(0, this.visibleCount); // <-- update here
+    setTimeout(() => this.observeIframes(), 0);
   }
 
   observeIframes() {
     if (typeof window === 'undefined') return;
     const iframes = document.querySelectorAll('.brag-iframe');
     iframes.forEach((iframe, idx) => {
-      if (this.iframeVisible[idx]) return; // Already visible, skip
+      if (this.iframeVisible[idx]) return; // Already visible, skip observing
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               this.iframeVisible[idx] = true;
-              observer.unobserve(entry.target);
+              observer.unobserve(entry.target); // Stop observing after first intersection
               this.cdr.detectChanges();
             }
           });

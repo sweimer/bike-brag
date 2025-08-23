@@ -1,0 +1,29 @@
+@use '../../../styles.scss' as *;
+
+@keyframes floatInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.float-in-right {
+  animation: floatInRight 1s ease-out;
+}
+
+.bragMapArticle {
+  // You may want to adjust these for your card layout
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+  width: 100%;
+  margin: 30px auto;
+}
+
+.brag-iframe {
+  width: 100%;
+  max-width: 100%;
+}
