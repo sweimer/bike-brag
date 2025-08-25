@@ -46,6 +46,7 @@ export class HomeComponent {
 
   loadBragItems() {
     const googleSheetCsvUrl = '/bragitems.csv';
+    //const googleSheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS4zWnq5PNRQmbtWFQ9gx9kRxbCj-EDY6go0VID_om6uhSZvqKrD2pL7fiWn-ZuA9jxFM2WoATc83KB/pub?output=csv';
     this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
       Papa.parse(csvData, {
         header: true,
