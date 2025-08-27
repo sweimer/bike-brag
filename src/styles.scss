@@ -33,50 +33,122 @@ $overlay06: rgba(52, 80, 87, 0.8);
 .bg-primary01 {
   background-color: $primary01;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-primary02 {
   background-color: $primary02;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-primary03 {
   background-color: $primary03;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-primary04 {
   background-color: $primary04;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-primary05 {
   background-color: $primary05;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-primary06 {
   background-color: $primary06;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay01 {
   background-color: $overlay01;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay02 {
   background-color: $overlay02;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay03 {
   background-color: $overlay03;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay04 {
   background-color: $overlay04;
   color: $black;
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay05 {
   background-color: $overlay05;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .bg-overlay06 {
   background-color: $overlay06;
   color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 @keyframes bounce {
@@ -237,10 +309,6 @@ body {
   font-size: $base-font-size;
   font-family: $base-font-family;
 }
-
-
-
-
 main {
   width: 100%;
   min-height: 100%;
@@ -258,6 +326,10 @@ main {
       opacity: 0;
     }
   }
+}
+
+.bragcard-top {
+  width: auto;
 }
 
 .return-to-top {
