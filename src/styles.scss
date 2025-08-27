@@ -111,15 +111,7 @@ $overlay06: rgba(52, 80, 87, 0.8);
   animation: floatInRight 1s ease-out;
 }
 
-.bragTag {
-  font-size: 4em;
-  font-family: 'Thinking';
-  .bigger {
-    font-size: 1.5em;
-    font-family: 'Brat';
-    padding: 0 5px;
-  }
-}
+
 
 // Parallax utility class
 .parallax {
@@ -156,7 +148,7 @@ h1 {
   }
 
   @media screen and (max-width: 640px) {
-    font-size: 3em;
+    font-size: 2.5em;
 
     .bigger {
       font-size: 1.3em;
@@ -175,6 +167,14 @@ h2 {
     font-family: 'Brat';
     padding: 0 5px;
   }
+
+  @media screen and (max-width: 640px) {
+    font-size: 2em;
+
+    .bigger {
+      font-size: 1.3em;
+    }
+  }
 }
 h3 {
   font-size: 2em;
@@ -186,6 +186,14 @@ h3 {
     font-size: 1.5em;
     font-family: 'Brat';
     padding: 0 5px;
+  }
+
+  @media screen and (max-width: 640px) {
+    font-size: 1.5em;
+
+    .bigger {
+      font-size: 1.3em;
+    }
   }
 }
 h4 {
@@ -199,6 +207,29 @@ h4 {
     font-family: 'Brat';
     padding: 0 5px;
   }
+  @media screen and (max-width: 640px) {
+    font-size: 1.2em;
+
+    .bigger {
+      font-size: 1.3em;
+    }
+  }
+}
+.bragTag {
+  font-size: 4em;
+  font-family: 'Thinking';
+  .bigger {
+    font-size: 1.5em;
+    font-family: 'Brat';
+    padding: 0 5px;
+  }
+  @media screen and (max-width: 640px) {
+    font-size: 1em;
+
+    .bigger {
+      font-size: 1em;
+    }
+  }
 }
 
 body {
@@ -209,18 +240,6 @@ body {
 
 
 
-.bragStart {
-  background-color: $black;
-  color: $white;
-  padding: 24px;
-  text-align: center;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.bragTag .fa {
-  animation: bounce 2s infinite;
-}
 
 main {
   width: 100%;
