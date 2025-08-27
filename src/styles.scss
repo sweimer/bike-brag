@@ -17,11 +17,11 @@ $base-font-family: sans-serif;
 // Color variables
 $white: #ffffff;
 $black: #000000;
-$primary01: #77473B;
-$primary02: #F3BC7D;
-$primary03: #F5EACF;
-$primary04: #CEB793;
-$primary05: #595A41;
+$primary01: #77473b;
+$primary02: #f3bc7d;
+$primary03: #f5eacf;
+$primary04: #ceb793;
+$primary05: #595a41;
 $primary06: #345057;
 $overlay01: rgba(119, 71, 59, 0.8);
 $overlay02: rgba(243, 188, 125, 0.8);
@@ -80,11 +80,22 @@ $overlay06: rgba(52, 80, 87, 0.8);
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  20% { transform: translateY(-20px); }
-  40% { transform: translateY(0); }
-  60% { transform: translateY(-10px); }
-  80% { transform: translateY(0); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(0);
+  }
 }
 @keyframes floatInRight {
   from {
@@ -125,7 +136,7 @@ $overlay06: rgba(52, 80, 87, 0.8);
   article {
     border-radius: 8px;
     padding: 24px;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
     width: 25%;
     margin-left: 50px;
   }
@@ -135,7 +146,7 @@ h1 {
   font-family: 'Thinking';
   font-size: 5em;
   line-height: 0;
-  text-shadow: 10px 10px 8px rgba(0,0,0,0.9);
+  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.9);
   z-index: 3;
 
   .bigger {
@@ -149,7 +160,7 @@ h2 {
   font-family: 'Thinking';
   font-weight: bold;
   line-height: 1.2em;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
     font-size: 1.5em;
@@ -161,7 +172,7 @@ h3 {
   font-size: 2em;
   font-family: 'Thinking';
   line-height: 0;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
     font-size: 1.5em;
@@ -173,7 +184,7 @@ h4 {
   font-size: 1.25em;
   font-family: 'Thinking';
   line-height: 0;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
     font-size: 1.5em;
@@ -233,7 +244,7 @@ header {
   pointer-events: auto;
 }
 
-.bragTag .fa{
+.bragTag .fa {
   animation: bounce 2s infinite;
 }
 
@@ -248,7 +259,7 @@ main {
     article {
       width: 100%;
       max-width: 1400px;
-      margin: 30px auto
+      margin: 30px auto;
     }
     article.bragMapArticle:not(.float-in-right) {
       opacity: 0;
@@ -269,7 +280,7 @@ main {
   height: 62px;
   font-size: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s;
   //opacity: 0;
   //pointer-events: none;
@@ -289,12 +300,9 @@ footer {
   pointer-events: auto;
 }
 
-
 .bragMapArticle iframe {
   max-width: 100%;
 }
 
-
 @media screen and (max-width: 650px) {
-
 }

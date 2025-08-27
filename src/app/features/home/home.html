@@ -4,24 +4,49 @@
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="150"
-    (scrolled)="loadMore()">
-  <div *ngFor="let item of visibleBragItems; let i = index" class="bragcard">
-    <section [ngClass]="'bg-primary0' + ((i % 6) + 1)">
-      <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
-        <h2 class="brag-title">
-          <span class="bigger">Brag</span>:
-          <span class="smaller">{{ item.location }}</span>
-        </h2>
-        <div class="brag-date"><strong>{{ item.date }}</strong></div>
-        <div class="brag-description">{{ item.description }}</div>
-      </article>
-    </section>
+    (scrolled)="loadMore()"
+  >
+    <div *ngFor="let item of visibleBragItems; let i = index" class="bragcard">
+      <section [ngClass]="'bg-primary0' + ((i % 6) + 1)">
+        <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
+          <h2 class="brag-title">
+            <span class="bigger">Brag</span>:
+            <span class="smaller">{{ item.location }}</span>
+          </h2>
+          <div class="brag-date">
+            <strong>{{ item.date }}</strong>
+          </div>
+          <div class="brag-description">{{ item.description }}</div>
+          <ul>
+            <li>
+              <a href="https://www.discovermoab.com/slickrock-bike-trail/">Slickrock Bike Trail</a>
+            </li>
+            <li>
+              <a href="https://www.discovermoab.com/the-whole-enchilada/">The Whole Enchilada</a>
+            </li>
+            <li>
+              <a href="https://www.discovermoab.com/moab-canyon-pathway/">Moab Canyon Pathway</a>
+            </li>
+            <li>
+              <a href="https://www.discovermoab.com/monitor-and-merrimac-bike-trail/"
+                >Monitor & Merrimac Trail</a
+              >
+            </li>
+          </ul>
+        </article>
+      </section>
 
-    <section class="parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
-      <article class="bragMapArticle" [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
-        <div class="brag-iframe" [innerHTML]="item.map"></div>
-      </article>
-      <button class="show-map-button" (click)="showMap(i)" *ngIf="!iframeVisible[i]">Show Map</button>
-    </section>
+      <section class="parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
+        <article
+          class="bragMapArticle"
+          [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']"
+        >
+          <div class="brag-iframe" [innerHTML]="item.map"></div>
+        </article>
+        <button class="show-map-button" (click)="showMap(i)" *ngIf="!iframeVisible[i]">
+          Show Map
+        </button>
+      </section>
+    </div>
   </div>
 </div>

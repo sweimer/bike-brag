@@ -22,7 +22,6 @@ export interface BragItem {
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
-
 export class HomeComponent {
   bragItems: BragItem[] = [];
   visibleCount = 1;
@@ -33,7 +32,7 @@ export class HomeComponent {
     private sanitizer: DomSanitizer,
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.loadBragItems();
@@ -51,7 +50,9 @@ export class HomeComponent {
       Papa.parse(csvData, {
         header: true,
         complete: (result: any) => {
-          const filtered = result.data.filter((item: any) => item.location && item.location.trim() !== '');
+          const filtered = result.data.filter(
+            (item: any) => item.location && item.location.trim() !== '',
+          );
           this.bragItems = filtered.map((item: any) => ({
             location: item.location,
             date: item.date,
@@ -64,7 +65,7 @@ export class HomeComponent {
           this.loading = false;
           this.cdr.detectChanges();
           setTimeout(() => this.observeIframes(), 0); // Start observing after DOM update
-        }
+        },
       });
     });
   }
@@ -81,7 +82,7 @@ export class HomeComponent {
       if (this.iframeVisible[idx]) return; // Already visible, skip
       const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               this.iframeVisible[idx] = true;
               observer.unobserve(entry.target);
@@ -89,7 +90,7 @@ export class HomeComponent {
             }
           });
         },
-        { threshold: 0.2 }
+        { threshold: 0.2 },
       );
       observer.observe(iframe);
     });
