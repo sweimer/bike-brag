@@ -339,18 +339,6 @@ main {
   width: auto;
 }
 
-footer {
-  background-color: $black;
-  color: $white;
-  padding: 24px;
-  text-align: center;
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .bragMapArticle iframe {
   max-width: 100%;
-}
-
-@media screen and (max-width: 650px) {
 }
