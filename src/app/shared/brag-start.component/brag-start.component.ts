@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './brag-start.component.html',
   styleUrl: './brag-start.component.scss'
 })
-export class BragStart {
+export class BragStartComponent {
 
 }

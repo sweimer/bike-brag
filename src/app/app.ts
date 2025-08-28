@@ -1,13 +1,13 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './shared/header/header.component';
-import { BragStart } from './shared/brag-start/brag-start.component';
+import { HeaderComponent } from './shared/header.component/header.component';
+import { BragStartComponent } from './shared/brag-start.component/brag-start.component';
 import { ReturnToTopComponent } from './shared/return-to-top.component/return-to-top.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, HeaderComponent, BragStart, ReturnToTopComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, BragStartComponent, ReturnToTopComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

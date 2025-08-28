@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BragStart } from './brag-start.component';
+import { BragStartComponent } from './brag-start.component';
 
-describe('BragStart', () => {
-  let component: BragStart;
-  let fixture: ComponentFixture<BragStart>;
+describe('BragStartComponent', () => {
+  let component: BragStartComponent;
+  let fixture: ComponentFixture<BragStartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BragStart]
+      imports: [BragStartComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BragStart);
+    fixture = TestBed.createComponent(BragStartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
