@@ -16,7 +16,7 @@ $base-font-family: sans-serif;
 // Headers
 h1 {
   font-family: 'Thinking';
-  font-size: 5em;
+  font-size: 2.5em;
   line-height: 0;
   text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.9);
   z-index: 3;
@@ -31,28 +31,27 @@ h1 {
     font-size: 2.5em;
 
     .bigger {
-      font-size: 1.3em;
+      font-size: 1.5em;
     }
   }
 }
 h2 {
-  font-size: 3em;
+  font-size: 2em;
   font-family: 'Thinking';
   font-weight: bold;
   line-height: 1.2em;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: 'Brat';
     padding: 0 5px;
   }
 
   @media screen and (max-width: 640px) {
-    font-size: 2em;
+    font-size: 1.5em;
 
     .bigger {
-      font-size: 1.3em;
+      font-size: 1.2em;
     }
   }
 }
@@ -96,15 +95,15 @@ h4 {
   }
 }
 .bragTag {
-  font-size: 4em;
+  font-size: 3em;
   font-family: 'Thinking';
   .bigger {
-    font-size: 1.5em;
+    font-size: 1em;
     font-family: 'Brat';
     padding: 0 5px;
   }
   @media screen and (max-width: 640px) {
-    font-size: 1em;
+    font-size: 1.5em;
 
     .bigger {
       font-size: 1em;
@@ -115,19 +114,31 @@ h4 {
 // Color variables
 $white: #ffffff;
 $black: #000000;
+$primary: #AD3836;
 $primary01: #77473b;
 $primary02: #f3bc7d;
 $primary03: #f5eacf;
 $primary04: #ceb793;
 $primary05: #595a41;
 $primary06: #345057;
-$overlay01: rgba(119, 71, 59, 0.8);
-$overlay02: rgba(243, 188, 125, 0.8);
-$overlay03: rgba(245, 234, 207, 0.8);
-$overlay04: rgba(206, 183, 147, 0.8);
-$overlay05: rgba(89, 90, 65, 0.8);
-$overlay06: rgba(52, 80, 87, 0.8);
+$overlay: rgba(173, 56, 54, 0.9);
+$overlay01: rgba(119, 71, 59, 0.9);
+$overlay02: rgba(243, 188, 125, 0.9);
+$overlay03: rgba(245, 234, 207, 0.9);
+$overlay04: rgba(206, 183, 147, 0.9);
+$overlay05: rgba(89, 90, 65, 0.9);
+$overlay06: rgba(52, 80, 87, 0.9);
 
+.bg-primary {
+  background-color: $primary;
+  color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
 .bg-primary01 {
   background-color: $primary01;
   color: $white;
@@ -180,6 +191,16 @@ $overlay06: rgba(52, 80, 87, 0.8);
 }
 .bg-primary06 {
   background-color: $primary06;
+  color: $white;
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+.bg-overlay {
+  background-color: $overlay;
   color: $white;
   a {
     color: $white;
@@ -306,7 +327,7 @@ $overlay06: rgba(52, 80, 87, 0.8);
   min-height: 60vh;
   width: auto;
   background-image: var(--parallax-bg);
-  //background-attachment: fixed;
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -316,13 +337,8 @@ $overlay06: rgba(52, 80, 87, 0.8);
     border-radius: 8px;
     padding: 24px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
-    width: 25%;
-    margin-left: 50px;
-
-    @media screen and (max-width: 1024px) {
-      margin-left: 10px;
-      width: calc(100% - 70px);
-    }
+    width: calc(100% - 20%);
+    max-width: 1400px;
   }
 }
 
@@ -350,12 +366,4 @@ main {
       opacity: 0;
     }
   }
-}
-
-.bragcard-top {
-  width: auto;
-}
-
-.bragMapArticle iframe {
-  max-width: 100%;
 }

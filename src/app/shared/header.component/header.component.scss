@@ -1,9 +1,20 @@
 @use '../../../styles.scss' as *;
 
+section.header-before {
+  width: 100%;
+
+  article {
+    margin: 0 auto;
+    padding: 1px 16px;
+    width: 100%;
+    max-width: 1400px;
+  }
+}
+
 header {
-  background-color: $primary01;
+  background-color: $black;
   position: relative;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 200px);
   overflow: hidden;
   color: $white;
   display: flex;
@@ -14,24 +25,7 @@ header {
   min-height: 100%;
   position: relative;
   background-attachment: fixed;
-  background-position: center calc(100% - 160px);
+  background-position: center calc(100% - 60px);
   background-repeat: no-repeat;
   background-size: cover;
-
-  .header-content {
-    position: absolute;
-    top: 75px;
-    left: 75px;
-    z-index: 2;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
 }

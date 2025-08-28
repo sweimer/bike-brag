@@ -1,16 +1,87 @@
 @use '../../../styles.scss' as *;
 
-.brag-description {
-  font-size: 2em;
-  margin: 10px 0;
-}
+.bragcard {
+  section.bragcard-top {
+    width: auto;
 
-.brag-tips {
-  border: 1px solid $black;
-  border-radius: 5px;
-  box-shadow: 2px 5px 20px 2px;
-  margin: 30px auto;
-  padding: 24px;
-  width: 80%;
-  animation: flicker-shadow 2s infinite alternate;
+    article {
+      .bragcard-title {
+        text-align: center;
+      }
+    }
+  }
+
+  section.bragcard-parallax {
+    min-height: 300px;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+
+    article {
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+
+      .bragcard-map-block {
+        width: 40%;
+        iframe {
+          max-width: 100%;
+        }
+      }
+
+      .bragcard-quote-block {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
+        width: 60%;
+
+        .bragcard-date {
+          margin: 16px 0;
+        }
+
+        .bragcard-quote {
+          font-size: 1.1em;
+          margin: 10px 0;
+
+          .fa-quote-left {
+            font-size: 3.5em;
+            margin-right: 8px;
+          }
+        }
+
+        .bragcard-tipcard {
+          border-radius: 5px;
+          box-shadow: 2px 5px 20px 2px;
+          margin: 30px;
+          padding: 24px;
+          width: calc(100% - 120px);
+          animation: flicker-shadow 2s infinite alternate;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        gap: 0;
+
+        .bragcard-map-block,
+        .bragcard-quote-block {
+          width: 100%;
+          position: static;
+        }
+
+        .bragcard-tipcard {
+          width: 100%;
+          margin: 20px 0 0 0;
+          position: static;
+          bottom: auto;
+        }
+      }
+    }
+  }
+
+  section.bragcard-tips {
+
+  }
 }

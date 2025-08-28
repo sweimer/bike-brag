@@ -1,38 +1,54 @@
 <div *ngIf="loading">Loading...</div>
+
 <div *ngIf="!loading">
   <div
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="150"
-    (scrolled)="loadMore()">
-  <div *ngFor="let item of visibleBragItems; let i = index" class="bragcard">
-    <section [ngClass]="'bg-primary0' + ((i % 6) + 1)" class="bragcard-top">
-      <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
-        <h2 class="brag-title">
-          <span class="bigger">Brag</span>:
-          <span class="smaller">I just rode in {{ item.location }}</span>
-        </h2>
-        <div class="brag-date"><strong>Brag Date: {{ item.date }}</strong></div>
-        <div *ngIf="item.description" class="brag-description">
-          <i class="fa-solid fa-quote-left"></i>{{ item.description }}<i class="fa-solid fa-quote-right"></i>
-        </div>
-        <div class="brag-tips">
-          <h3>Brag's Tips for {{ item.location }}</h3>
-          <ul>
-            <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-            <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-            <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-            <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-          </ul>
-        </div>
-      </article>
-    </section>
+    (scrolled)="loadMore()"
+  >
+    <div class="bragcard" *ngFor="let item of visibleBragItems; let i = index">
 
-    <section class="bragard-parallax parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
-      <article class="bragMapArticle" [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
-        <div class="brag-iframe" [innerHTML]="item.map"></div>
-      </article>
-      <button class="show-map-button" (click)="showMap(i)" *ngIf="!iframeVisible[i]">Show Map</button>
-    </section>
+      <section class="bragcard-top" [ngClass]="'bg-primary0' + ((i % 6) + 1)">
+        <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
+          <h2 class="bragcard-title">
+            <span class="bigger">Brag</span>:
+            <span class="smaller">SWeimer just rode in {{ item.location }}</span>
+          </h2>
+        </article>
+      </section>
+
+      <section class="bragcard-parallax parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
+        <article [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
+          <div class="bragcard-map-block" [innerHTML]="item.map"></div>
+          <div class="bragcard-quote-block">
+            <div class="bragcard-date">
+              <strong>{{ item.date }}</strong>
+            </div>
+
+            <div class="bragcard-quote" *ngIf="item.description">
+              <i class="fa-solid fa-quote-left"></i>
+              {{ item.description }}
+            </div>
+
+            <div class="fa-quoteby">
+              - SWeimer
+            </div>
+
+            <div class="bragcard-tipcard">
+              <h3>
+                Brag's Tips for {{ item.location }}
+              </h3>
+              <ul>
+                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
   </div>
 </div>
