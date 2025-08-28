@@ -51,6 +51,27 @@
           }
         }
 
+        .bragcard-rider {
+          margin-top: 16px;
+          text-align: right;
+
+          button {
+            margin-left: 16px;
+          }
+        }
+
+        .bragcard-tags {
+          margin-top: 16px;
+
+          strong {
+            margin-right: 5px;
+          }
+
+          button {
+            margin-left: 16px;
+          }
+        }
+
         .bragcard-tipcard {
           border-radius: 5px;
           box-shadow: 2px 5px 20px 2px;

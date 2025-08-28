@@ -13,7 +13,7 @@
         <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
           <h2 class="bragcard-title">
             <span class="bigger">Brag</span>:
-            <span class="smaller">SWeimer just rode in {{ item.location }}</span>
+            <span class="smaller">{{ item.rider }} just rode in {{ item.location }}</span>
           </h2>
         </article>
       </section>
@@ -31,8 +31,22 @@
               {{ item.description }}
             </div>
 
-            <div class="fa-quoteby">
-              - SWeimer
+            <div class="bragcard-rider fa-quoteby" *ngIf="item.rider">
+              - <a href="#" (click)="filterByRider(item.rider!); $event.preventDefault()">{{ item.rider }}</a>
+              <button *ngIf="filteredRider" (click)="filteredRider = null" class="clear-rider-filter-btn">
+                Clear Rider Filter
+              </button>
+            </div>
+
+            <div class="bragcard-tags" *ngIf="item.tags">
+              <strong>Tags:</strong>
+              <ng-container *ngFor="let tag of item.tags.split(',')">
+                <a href="#" (click)="filterByTag(tag.trim()); $event.preventDefault()">{{ tag.trim() }}</a>
+                <span *ngIf="tag !== item.tags.split(',')[item.tags.split(',').length - 1]">, </span>
+              </ng-container>
+              <button *ngIf="filteredTag" (click)="filteredTag = null" class="clear-tag-filter-btn">
+                Clear Tag Filter
+              </button>
             </div>
 
             <div class="bragcard-tipcard">

@@ -1,7 +1,7 @@
 import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
@@ -13,6 +13,8 @@ export interface BragItem {
   description: string;
   image: string;
   map: SafeResourceUrl;
+  tags?: string;
+  rider?: string;
 }
 
 @Component({
@@ -27,6 +29,8 @@ export class BragCardComponent {
   visibleCount = 1;
   loading = true;
   iframeVisible: boolean[] = [];
+  filteredTag: string | null = null;
+  filteredRider: string | null = null; // <-- Add this line
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -40,12 +44,21 @@ export class BragCardComponent {
   }
 
   get visibleBragItems() {
-    return this.bragItems.slice(0, this.visibleCount);
+    let items = this.bragItems.slice(0, this.visibleCount);
+    if (this.filteredTag) {
+      items = items.filter(item =>
+        item.tags &&
+        item.tags.split(',').map(t => t.trim()).includes(this.filteredTag as string)
+      );
+    }
+    if (this.filteredRider) {
+      items = items.filter(item => item.rider === this.filteredRider);
+    }
+    return items; // <-- Return the filtered items
   }
 
   loadBragItems() {
-    const googleSheetCsvUrl = '/bragitems.csv';
-    //const googleSheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS4zWnq5PNRQmbtWFQ9gx9kRxbCj-EDY6go0VID_om6uhSZvqKrD2pL7fiWn-ZuA9jxFM2WoATc83KB/pub?output=csv';
+    const googleSheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
     this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
       Papa.parse(csvData, {
         header: true,
@@ -58,13 +71,14 @@ export class BragCardComponent {
             date: item.date,
             description: item.description,
             image: item.image,
-            map: this.sanitizer.bypassSecurityTrustHtml(item.map), // <-- change here
+            map: this.sanitizer.bypassSecurityTrustHtml(item.map),
             tags: item.tags,
+            rider: item.rider,
           }));
-          this.iframeVisible = new Array(this.bragItems.length).fill(false); // Initialize visibility array
+          this.iframeVisible = new Array(this.bragItems.length).fill(false);
           this.loading = false;
           this.cdr.detectChanges();
-          setTimeout(() => this.observeIframes(), 0); // Start observing after DOM update
+          setTimeout(() => this.observeIframes(), 0);
         },
       });
     });
@@ -72,14 +86,14 @@ export class BragCardComponent {
 
   loadMore() {
     this.visibleCount += 1;
-    setTimeout(() => this.observeIframes(), 0); // Re-observe after more items are shown
+    setTimeout(() => this.observeIframes(), 0);
   }
 
   observeIframes() {
     if (typeof window === 'undefined') return;
     const iframes = document.querySelectorAll('.brag-iframe');
     iframes.forEach((iframe, idx) => {
-      if (this.iframeVisible[idx]) return; // Already visible, skip
+      if (this.iframeVisible[idx]) return;
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -99,5 +113,13 @@ export class BragCardComponent {
   showMap(index: number): void {
     this.iframeVisible[index] = true;
     this.cdr.detectChanges();
+  }
+
+  filterByTag(tag: string) {
+    this.filteredTag = tag;
+  }
+
+  filterByRider(rider: string) {
+    this.filteredRider = rider;
   }
 }
