@@ -12,8 +12,10 @@
           <span class="bigger">Brag</span>:
           <span class="smaller">I just rode in {{ item.location }}</span>
         </h2>
-        <div class="brag-date"><strong>Ride Date: {{ item.date }}</strong></div>
-        <div class="brag-description">{{ item.description }}</div>
+        <div class="brag-date"><strong>Brag Date: {{ item.date }}</strong></div>
+        <div *ngIf="item.description" class="brag-description">
+          <i class="fa-solid fa-quote-left"></i>{{ item.description }}<i class="fa-solid fa-quote-right"></i>
+        </div>
         <div class="brag-tips">
           <h3>Brag's Tips for {{ item.location }}</h3>
           <ul>

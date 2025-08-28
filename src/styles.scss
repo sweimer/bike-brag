@@ -280,6 +280,23 @@ $overlay06: rgba(52, 80, 87, 0.8);
 .float-in-right {
   animation: floatInRight 1s ease-out;
 }
+@keyframes flicker-shadow {
+  0% {
+    box-shadow: 2px 5px 20px 2px;
+  }
+  25% {
+    box-shadow: 2px 5px 30px 4px;
+  }
+  50% {
+    box-shadow: 2px 5px 10px 1px;
+  }
+  75% {
+    box-shadow: 2px 5px 25px 6px;
+  }
+  100% {
+    box-shadow: 2px 5px 20px 2px;
+  }
+}
 
 
 

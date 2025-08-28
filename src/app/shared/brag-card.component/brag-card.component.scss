@@ -1,0 +1,16 @@
+@use '../../../styles.scss' as *;
+
+.brag-description {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.brag-tips {
+  border: 1px solid $black;
+  border-radius: 5px;
+  box-shadow: 2px 5px 20px 2px;
+  margin: 30px auto;
+  padding: 24px;
+  width: 80%;
+  animation: flicker-shadow 2s infinite alternate;
+}
