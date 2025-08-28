@@ -18,85 +18,94 @@
     align-items: stretch;
 
     article {
-      display: flex;
-      gap: 24px;
-      align-items: stretch;
+      box-shadow: none;
+      padding: 0 24px;
 
-      .bragcard-map-block {
-        width: 40%;
-        iframe {
-          max-width: 100%;
-        }
-      }
-
-      .bragcard-quote-block {
-        flex: 1 1 0;
+      .bragcard-article-content {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        position: relative;
-        width: 60%;
+        gap: 24px;
+        align-items: stretch;
+        border-radius: 50px;
+        padding: 50px;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
+        width: calc(100% - 100px);
 
-        .bragcard-date {
-          margin: 16px 0;
-        }
-
-        .bragcard-quote {
-          font-size: 1.1em;
-          margin: 10px 0;
-
-          .fa-quote-left {
-            font-size: 3.5em;
-            margin-right: 8px;
+        .bragcard-map-block {
+          width: 40%;
+          iframe {
+            max-width: 100%;
           }
         }
 
-        .bragcard-rider {
-          margin-top: 16px;
-          text-align: right;
-
-          button {
-            margin-left: 16px;
-          }
-        }
-
-        .bragcard-tags {
-          margin-top: 16px;
-
-          strong {
-            margin-right: 5px;
-          }
-
-          button {
-            margin-left: 16px;
-          }
-        }
-
-        .bragcard-tipcard {
-          border-radius: 5px;
-          box-shadow: 2px 5px 20px 2px;
-          margin: 30px;
-          padding: 24px;
-          width: calc(100% - 120px);
-          animation: flicker-shadow 2s infinite alternate;
-        }
-      }
-
-      @media screen and (max-width: 1024px) {
-        flex-direction: column;
-        gap: 0;
-
-        .bragcard-map-block,
         .bragcard-quote-block {
-          width: 100%;
-          position: static;
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          position: relative;
+          width: 60%;
+
+          .bragcard-date {
+            margin: 16px 0;
+          }
+
+          .bragcard-quote {
+            font-size: 1.1em;
+            margin: 10px 0;
+
+            .fa-quote-left {
+              font-size: 3.5em;
+              margin-right: 8px;
+            }
+          }
+
+          .bragcard-rider {
+            margin-top: 16px;
+            text-align: right;
+
+            button {
+              margin-left: 16px;
+            }
+          }
+
+          .bragcard-tags {
+            margin-top: 16px;
+
+            strong {
+              margin-right: 5px;
+            }
+
+            button {
+              margin-left: 16px;
+            }
+          }
+
+          .bragcard-tipcard {
+            border-radius: 5px;
+            box-shadow: 2px 5px 20px 2px;
+            margin: 30px;
+            padding: 24px;
+            width: calc(100% - 120px);
+            animation: flicker-shadow 2s infinite alternate;
+          }
         }
 
-        .bragcard-tipcard {
-          width: 100%;
-          margin: 20px 0 0 0;
-          position: static;
-          bottom: auto;
+        @media screen and (max-width: 1024px) {
+          flex-direction: column;
+          gap: 0;
+
+          .bragcard-map-block,
+          .bragcard-quote-block {
+            width: 100%;
+            position: static;
+          }
+
+          .bragcard-tipcard {
+            width: 100%;
+            margin: 20px 0 0 0;
+            position: static;
+            bottom: auto;
+          }
         }
       }
     }
@@ -105,4 +114,60 @@
   section.bragcard-tips {
 
   }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-right {
+  transform: translateX(0);
+  opacity: 1;
+}
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.slide-out-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bragcard-article-wrapper {
+  position: relative;
+  min-height: 200px;
+}
+
+.toggle-article-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 32px;
+  z-index: 2;
+  writing-mode: vertical-lr;
+  background: $black;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 1.2em;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.bragcard-article-content {
+  transition: transform 0.5s, opacity 0.5s;
+  will-change: transform, opacity;
 }

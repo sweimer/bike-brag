@@ -19,49 +19,64 @@
       </section>
 
       <section class="bragcard-parallax parallax" [style.--parallax-bg]="'url(' + item.image + ')'">
-        <article [ngClass]="['bg-overlay0' + ((i % 6) + 1), iframeVisible[i] ? 'float-in-right' : '']">
-          <div class="bragcard-map-block" [innerHTML]="item.map"></div>
-          <div class="bragcard-quote-block">
-            <div class="bragcard-date">
-              <strong>{{ item.date }}</strong>
+        <article
+          class="bragcard-article-wrapper"
+          style="position: relative;"
+        >
+          <button
+            class="toggle-article-btn"
+            (click)="toggleArticle(i)"
+            aria-label="Hide/Show"
+            style="position: absolute; left: 0; top: 0; height: 100%; width: 50px; z-index: 2;"
+          >
+            <i class="fa-solid" [ngClass]="hideArticle[i] ? 'fa-arrow-right' : 'fa-arrow-left'"></i>
+          </button>
+          <div
+            class="bragcard-article-content"
+            [ngClass]="[
+              'bg-overlay0' + ((i % 6) + 1),
+              hideArticle[i] ? 'slide-out-left' : 'slide-in-right'
+            ]"
+          >
+            <div class="bragcard-map-block" [innerHTML]="item.map"></div>
+            <div class="bragcard-quote-block">
+              <div class="bragcard-date">
+                <strong>{{ item.date }}</strong>
+              </div>
+              <div class="bragcard-quote" *ngIf="item.description">
+                <i class="fa-solid fa-quote-left"></i>
+                {{ item.description }}
+              </div>
+              <div class="bragcard-rider fa-quoteby" *ngIf="item.rider">
+                - <a href="#" (click)="filterByRider(item.rider!); $event.preventDefault()">{{ item.rider }}</a>
+                <button *ngIf="filteredRider" (click)="filteredRider = null" class="clear-rider-filter-btn">
+                  Clear Rider Filter
+                </button>
+              </div>
+              <div class="bragcard-tags" *ngIf="item.tags">
+                <strong>Tags:</strong>
+                <ng-container *ngFor="let tag of item.tags.split(',')">
+                  <a href="#" (click)="filterByTag(tag.trim()); $event.preventDefault()">{{ tag.trim() }}</a>
+                  <span *ngIf="tag !== item.tags.split(',')[item.tags.split(',').length - 1]">, </span>
+                </ng-container>
+                <button *ngIf="filteredTag" (click)="filteredTag = null" class="clear-tag-filter-btn">
+                  Clear Tag Filter
+                </button>
+              </div>
+              <div class="bragcard-tipcard">
+                <h3>
+                  Brag's Tips for {{ item.location }}
+                </h3>
+                <ul>
+                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
+                </ul>
+              </div>
             </div>
-
-            <div class="bragcard-quote" *ngIf="item.description">
-              <i class="fa-solid fa-quote-left"></i>
-              {{ item.description }}
-            </div>
-
-            <div class="bragcard-rider fa-quoteby" *ngIf="item.rider">
-              - <a href="#" (click)="filterByRider(item.rider!); $event.preventDefault()">{{ item.rider }}</a>
-              <button *ngIf="filteredRider" (click)="filteredRider = null" class="clear-rider-filter-btn">
-                Clear Rider Filter
-              </button>
-            </div>
-
-            <div class="bragcard-tags" *ngIf="item.tags">
-              <strong>Tags:</strong>
-              <ng-container *ngFor="let tag of item.tags.split(',')">
-                <a href="#" (click)="filterByTag(tag.trim()); $event.preventDefault()">{{ tag.trim() }}</a>
-                <span *ngIf="tag !== item.tags.split(',')[item.tags.split(',').length - 1]">, </span>
-              </ng-container>
-              <button *ngIf="filteredTag" (click)="filteredTag = null" class="clear-tag-filter-btn">
-                Clear Tag Filter
-              </button>
-            </div>
-
-            <div class="bragcard-tipcard">
-              <h3>
-                Brag's Tips for {{ item.location }}
-              </h3>
-              <ul>
-                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-              </ul>
-            </div>
-          </div>
-        </article>
+          </div> <!-- Close bragcard-article-content -->
+        </article> <!-- Close bragcard-article-wrapper -->
       </section>
     </div>
   </div>

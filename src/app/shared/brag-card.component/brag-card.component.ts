@@ -30,7 +30,8 @@ export class BragCardComponent {
   loading = true;
   iframeVisible: boolean[] = [];
   filteredTag: string | null = null;
-  filteredRider: string | null = null; // <-- Add this line
+  filteredRider: string | null = null;
+  hideArticle: boolean[] = []; // <-- Add this line
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -45,16 +46,17 @@ export class BragCardComponent {
 
   get visibleBragItems() {
     let items = this.bragItems.slice(0, this.visibleCount);
-    if (this.filteredTag) {
+    if (typeof this.filteredTag === 'string' && this.filteredTag) {
+      const tag = this.filteredTag as string;
       items = items.filter(item =>
         item.tags &&
-        item.tags.split(',').map(t => t.trim()).includes(this.filteredTag as string)
+        item.tags.split(',').map(t => t.trim()).includes(tag)
       );
     }
     if (this.filteredRider) {
       items = items.filter(item => item.rider === this.filteredRider);
     }
-    return items; // <-- Return the filtered items
+    return items;
   }
 
   loadBragItems() {
@@ -76,6 +78,7 @@ export class BragCardComponent {
             rider: item.rider,
           }));
           this.iframeVisible = new Array(this.bragItems.length).fill(false);
+          this.hideArticle = new Array(this.bragItems.length).fill(false); // <-- Initialize hideArticle array
           this.loading = false;
           this.cdr.detectChanges();
           setTimeout(() => this.observeIframes(), 0);
@@ -121,5 +124,9 @@ export class BragCardComponent {
 
   filterByRider(rider: string) {
     this.filteredRider = rider;
+  }
+
+  toggleArticle(index: number) {
+    this.hideArticle[index] = !this.hideArticle[index];
   }
 }
