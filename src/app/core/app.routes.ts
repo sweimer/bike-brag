@@ -1,4 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../features/home';
+import { BragCardComponent } from '../shared/brag-card.component/brag-card.component';
 
-export const routes: Routes = [{ path: '', component: HomeComponent, outlet: 'primary' }];
+export const routes: Routes = [{ path: '', component: BragCardComponent, outlet: 'primary' }];

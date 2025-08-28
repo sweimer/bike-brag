@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header.component/header.component';
 import { BragStartComponent } from './shared/brag-start.component/brag-start.component';
+import { BragCardComponent } from './shared/brag-card.component/brag-card.component';
 import { ReturnToTopComponent } from './shared/return-to-top.component/return-to-top.component';
 import { FooterComponent } from './shared/footer.component/footer.component';
 
@@ -10,9 +10,9 @@ import { FooterComponent } from './shared/footer.component/footer.component';
   selector: 'app-root',
   imports: [
     CommonModule,
-    RouterOutlet,
     HeaderComponent,
     BragStartComponent,
+    BragCardComponent,
     ReturnToTopComponent,
     FooterComponent
   ],
