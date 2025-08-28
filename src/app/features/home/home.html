@@ -10,9 +10,9 @@
       <article [ngClass]="'bg-overlay0' + ((i % 6) + 1)">
         <h2 class="brag-title">
           <span class="bigger">Brag</span>:
-          <span class="smaller">{{ item.location }}</span>
+          <span class="smaller">I just rode in {{ item.location }}</span>
         </h2>
-        <div class="brag-date"><strong>Rode here on {{ item.date }}</strong></div>
+        <div class="brag-date"><strong>Ride Date: {{ item.date }}</strong></div>
         <div class="brag-description">{{ item.description }}</div>
         <div class="brag-tips">
           <h3>Brag's Tips for {{ item.location }}</h3>

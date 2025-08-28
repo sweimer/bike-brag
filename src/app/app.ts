@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
 import { BragStart } from './shared/brag-start/brag-start.component';
+import { ReturnToTopComponent } from './shared/return-to-top.component/return-to-top.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, HeaderComponent, BragStart],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, BragStart, ReturnToTopComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -339,30 +339,6 @@ main {
   width: auto;
 }
 
-.return-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 0px;
-  z-index: 1000;
-  background: $primary05;
-  color: $white;
-  border: none;
-  border-radius: 5% 0 0 5%;
-  width: 200px;
-  height: 62px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s;
-  //opacity: 0;
-  //pointer-events: none;
-  //transition: opacity 0.3s;
-}
-.return-to-top.ng-star-inserted {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 footer {
   background-color: $black;
   color: $white;
