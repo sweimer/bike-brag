@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'Brat';
-  src: url('assets/fonts/brat/brat.ttf') format('truetype');
-  font-weight: bold;
   font-style: normal;
+  font-weight: bold;
+  src: url('assets/fonts/brat/brat.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Thinking';
-  src: url('assets/fonts/Thinking.otf') format('truetype');
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/Thinking.otf') format('truetype');
 }
 // Font size variables
-$base-font-size: 18px;
+$base-font-size: 18px;Fontsizevariables$base-font-size
 $base-font-family: sans-serif;
 // Headers
 h1 {
@@ -36,14 +36,14 @@ h1 {
   }
 }
 h2 {
-  font-size: 2em;
   font-family: 'Thinking';
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.2em;
 
   .bigger {
-    font-size: 1.2em;
     font-family: 'Brat';
+    font-size: 1.2em;
     padding: 0 5px;
   }
 
@@ -56,14 +56,14 @@ h2 {
   }
 }
 h3 {
-  font-size: 2em;
   font-family: 'Thinking';
+  font-size: 2em;
   line-height: 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
-    font-size: 1.5em;
     font-family: 'Brat';
+    font-size: 1.5em;
     padding: 0 5px;
   }
 
@@ -76,14 +76,14 @@ h3 {
   }
 }
 h4 {
-  font-size: 1.25em;
   font-family: 'Thinking';
+  font-size: 1.25em;
   line-height: 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 
   .bigger {
-    font-size: 1.5em;
     font-family: 'Brat';
+    font-size: 1.5em;
     padding: 0 5px;
   }
   @media screen and (max-width: 640px) {
@@ -95,11 +95,11 @@ h4 {
   }
 }
 .bragTag {
-  font-size: 3em;
   font-family: 'Thinking';
+  font-size: 3em;
   .bigger {
-    font-size: 1em;
     font-family: 'Brat';
+    font-size: 1em;
     padding: 0 5px;
   }
   @media screen and (max-width: 640px) {
@@ -112,9 +112,9 @@ h4 {
 }
 
 // Color variables
-$white: #ffffff;
+$white: #ffffff;Colorvariables$white
 $black: #000000;
-$primary: #AD3836;
+$primary: #ad3836;
 $primary01: #77473b;
 $primary02: #f3bc7d;
 $primary03: #f5eacf;
@@ -320,76 +320,72 @@ $overlay06: rgba(52, 80, 87, 0.8);
 }
 @keyframes slideInLeft {
   from {
-    transform: translateX(100%);
     opacity: 0;
+    transform: translateX(100%);
   }
   to {
-    transform: translateX(0);
     opacity: 1;
+    transform: translateX(0);
   }
 }
 .slide-in-right {
-  transform: translateX(0);
   opacity: 1;
+  transform: translateX(0);
 }
 @keyframes slideOutRight {
   from {
-    transform: translateX(0);
     opacity: 1;
+    transform: translateX(0);
   }
   to {
-    transform: translateX(100%);
     opacity: 0;
+    transform: translateX(100%);
   }
 }
 .slide-out-left {
-  transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
+  transform: translateX(-100%);
 }
-
-
 
 // Parallax utility class
 .parallax {
-  position: relative;
-  min-height: 60vh;
-  width: auto;
-  background-image: var(--parallax-bg);
   background-attachment: fixed;
+  background-image: var(--parallax-bg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 60vh;
+  position: relative;
+  width: auto;
   z-index: 0;
 
   article {
     border-radius: 8px;
-    padding: 24px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.8);
-    width: calc(100% - 20%);
     max-width: 1400px;
+    padding: 24px;
+    width: calc(100% - 20%);
   }
 }
 
-
-
 body {
-  margin: 0 !important;
-  font-size: $base-font-size;
   font-family: $base-font-family;
+  font-size: $base-font-size;
+  margin: 0 !important;
 }
 main {
-  width: 100%;
   min-height: 100%;
+  width: 100%;
 
   section {
-    width: 100%;
     padding: 14px;
+    width: 100%;
 
     article {
-      width: 100%;
-      max-width: 1400px;
       margin: 30px auto;
+      max-width: 1400px;
+      width: 100%;
     }
     article.bragMapArticle:not(.float-in-right) {
       opacity: 0;

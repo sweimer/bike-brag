@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-return-to-top',
   standalone: true,
   templateUrl: './return-to-top.component.html',
-  styleUrl: './return-to-top.component.scss'
+  styleUrl: './return-to-top.component.scss',
 })
 export class ReturnToTopComponent {
   scrollToTop() {

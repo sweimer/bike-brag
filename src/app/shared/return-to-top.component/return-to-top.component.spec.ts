@@ -8,9 +8,8 @@ describe('ReturnToTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReturnToTopComponent]
-    })
-    .compileComponents();
+      imports: [ReturnToTopComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReturnToTopComponent);
     component = fixture.componentInstance;

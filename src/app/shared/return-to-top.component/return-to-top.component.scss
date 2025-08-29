@@ -1,23 +1,23 @@
 @use '../../../styles.scss' as *;
 
 .return-to-top {
-  position: fixed;
-  bottom: 80px;
-  right: 0px;
-  z-index: 1000;
-  background: $primary05;
-  color: $white;
-  border: none;
-  border-radius: 5% 0 0 5%;
-  width: 75px;
-  height: 62px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s;
   //opacity: 0;
   //pointer-events: none;
   //transition: opacity 0.3s;
+  background: $primary05;
+  border: none;
+  border-radius: 5% 0 0 5%;
+  bottom: 80px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: $white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  height: 62px;
+  position: fixed;
+  right: 0px;
+  transition: opacity 0.3s;
+  width: 75px;
+  z-index: 1000;
 }
 .return-to-top.ng-star-inserted {
   opacity: 1;

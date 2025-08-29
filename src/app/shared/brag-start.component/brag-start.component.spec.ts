@@ -7,9 +7,8 @@ describe('BragStartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BragStartComponent]
-    })
-    .compileComponents();
+      imports: [BragStartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BragStartComponent);
     component = fixture.componentInstance;

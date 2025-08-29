@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-brag-start',
   imports: [],
   templateUrl: './brag-start.component.html',
-  styleUrl: './brag-start.component.scss'
+  styleUrl: './brag-start.component.scss',
 })
-export class BragStartComponent {
-
-}
+export class BragStartComponent {}

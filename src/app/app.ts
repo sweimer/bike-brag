@@ -14,7 +14,7 @@ import { FooterComponent } from './shared/footer.component/footer.component';
     BragStartComponent,
     BragCardComponent,
     ReturnToTopComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

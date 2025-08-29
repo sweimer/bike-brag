@@ -22,7 +22,7 @@ export interface BragItem {
   standalone: true,
   imports: [CommonModule, InfiniteScrollDirective],
   templateUrl: './brag-card.component.html',
-  styleUrl: './brag-card.component.scss'
+  styleUrl: './brag-card.component.scss',
 })
 export class BragCardComponent {
   bragItems: BragItem[] = [];
@@ -48,19 +48,24 @@ export class BragCardComponent {
     let items = this.bragItems.slice(0, this.visibleCount);
     if (typeof this.filteredTag === 'string' && this.filteredTag) {
       const tag = this.filteredTag as string;
-      items = items.filter(item =>
-        item.tags &&
-        item.tags.split(',').map(t => t.trim()).includes(tag)
+      items = items.filter(
+        (item) =>
+          item.tags &&
+          item.tags
+            .split(',')
+            .map((t) => t.trim())
+            .includes(tag),
       );
     }
     if (this.filteredRider) {
-      items = items.filter(item => item.rider === this.filteredRider);
+      items = items.filter((item) => item.rider === this.filteredRider);
     }
     return items;
   }
 
   loadBragItems() {
-    const googleSheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
+    const googleSheetCsvUrl =
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
     this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
       Papa.parse(csvData, {
         header: true,

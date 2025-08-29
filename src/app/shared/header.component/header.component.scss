@@ -5,27 +5,27 @@ section.header-before {
 
   article {
     margin: 0 auto;
+    max-width: 1400px;
     padding: 1px 16px;
     width: 100%;
-    max-width: 1400px;
   }
 }
 
 header {
-  background-color: $black;
-  position: relative;
-  height: calc(100vh - 200px);
-  overflow: hidden;
-  color: $white;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 1;
-  background-image: url(/assets/img/brags/OCC-2025.jpg);
-  min-height: 100%;
-  position: relative;
   background-attachment: fixed;
+  background-color: $black;
+  background-image: url(/assets/img/brags/OCC-2025.jpg);
   background-position: center calc(100% - 60px);
   background-repeat: no-repeat;
   background-size: cover;
+  color: $white;
+  display: flex;
+  height: calc(100vh - 200px);
+  justify-content: center;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  position: relative;
+  z-index: 1;
 }
