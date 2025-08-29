@@ -57,6 +57,7 @@
         will-change: transform, opacity;
 
         .bragcard-map-block {
+          padding: 16px;
           width: 40%;
           iframe {
             max-width: 100%;
@@ -68,6 +69,7 @@
           flex: 1 1 0;
           flex-direction: column;
           justify-content: flex-start;
+          padding: 16px;
           position: relative;
           width: 60%;
 
