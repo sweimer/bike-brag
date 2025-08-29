@@ -64,33 +64,43 @@ export class BragCardComponent {
   }
 
   loadBragItems() {
-    const googleSheetCsvUrl =
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
-    this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
-      Papa.parse(csvData, {
-        header: true,
-        complete: (result: any) => {
-          const filtered = result.data.filter(
-            (item: any) => item.location && item.location.trim() !== '',
-          );
-          this.bragItems = filtered.map((item: any) => ({
+  const googleSheetCsvUrl =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
+  this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
+    Papa.parse(csvData, {
+      header: true,
+      complete: (result: any) => {
+        const filtered = result.data.filter(
+          (item: any) => item.location && item.location.trim() !== '',
+        );
+        this.bragItems = filtered.map((item: any) => {
+          let mapHtml = item.map;
+          // Add title if it's an iframe and doesn't already have one
+          if (mapHtml && mapHtml.includes('<iframe') && !mapHtml.includes('title=')) {
+            mapHtml = mapHtml.replace(
+              '<iframe',
+              `<iframe title="Map of bike route in ${item.location}"`
+            );
+          }
+          return {
             location: item.location,
             date: item.date,
             description: item.description,
             image: item.image,
-            map: this.sanitizer.bypassSecurityTrustHtml(item.map),
+            map: this.sanitizer.bypassSecurityTrustHtml(mapHtml),
             tags: item.tags,
             rider: item.rider,
-          }));
-          this.iframeVisible = new Array(this.bragItems.length).fill(false);
-          this.hideArticle = new Array(this.bragItems.length).fill(false); // <-- Initialize hideArticle array
-          this.loading = false;
-          this.cdr.detectChanges();
-          setTimeout(() => this.observeIframes(), 0);
-        },
-      });
+          };
+        });
+        this.iframeVisible = new Array(this.bragItems.length).fill(false);
+        this.hideArticle = new Array(this.bragItems.length).fill(false);
+        this.loading = false;
+        this.cdr.detectChanges();
+        setTimeout(() => this.observeIframes(), 0);
+      },
     });
-  }
+  });
+}
 
   loadMore() {
     this.visibleCount += 1;
