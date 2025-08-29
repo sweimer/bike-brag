@@ -121,13 +121,13 @@ $primary03: #f5eacf;
 $primary04: #ceb793;
 $primary05: #595a41;
 $primary06: #345057;
-$overlay: rgba(173, 56, 54, 0.9);
-$overlay01: rgba(119, 71, 59, 0.9);
-$overlay02: rgba(243, 188, 125, 0.9);
-$overlay03: rgba(245, 234, 207, 0.9);
-$overlay04: rgba(206, 183, 147, 0.9);
-$overlay05: rgba(89, 90, 65, 0.9);
-$overlay06: rgba(52, 80, 87, 0.9);
+$overlay: rgba(173, 56, 54, 0.8);
+$overlay01: rgba(119, 71, 59, 0.8);
+$overlay02: rgba(243, 188, 125, 0.8);
+$overlay03: rgba(245, 234, 207, 0.8);
+$overlay04: rgba(206, 183, 147, 0.8);
+$overlay05: rgba(89, 90, 65, 0.8);
+$overlay06: rgba(52, 80, 87, 0.8);
 
 .bg-primary {
   background-color: $primary;
@@ -317,6 +317,35 @@ $overlay06: rgba(52, 80, 87, 0.9);
   100% {
     box-shadow: 2px 5px 20px 2px;
   }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-right {
+  transform: translateX(0);
+  opacity: 1;
+}
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.slide-out-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 
