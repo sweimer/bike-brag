@@ -1,3 +1,5 @@
+@use 'styles/variables' as *;
+
 @font-face {
   font-family: 'Brat';
   font-style: normal;
@@ -10,9 +12,6 @@
   font-weight: normal;
   src: url('assets/fonts/Thinking.otf') format('truetype');
 }
-// Font size variables
-$base-font-size: 18px;
-$base-font-family: sans-serif;
 
 // Headers
 h1 {
@@ -87,6 +86,7 @@ h4 {
     font-size: 1.5em;
     padding: 0 5px;
   }
+
   @media screen and (max-width: 640px) {
     font-size: 1.2em;
 
@@ -111,24 +111,6 @@ h4 {
     }
   }
 }
-
-// Color variables
-$white: #ffffff;
-$black: #000000;
-$primary: #ad3836;
-$primary01: #77473b;
-$primary02: #f3bc7d;
-$primary03: #f5eacf;
-$primary04: #ceb793;
-$primary05: #595a41;
-$primary06: #345057;
-$overlay: rgba(173, 56, 54, 0.8);
-$overlay01: rgba(119, 71, 59, 0.8);
-$overlay02: rgba(243, 188, 125, 0.8);
-$overlay03: rgba(245, 234, 207, 0.8);
-$overlay04: rgba(206, 183, 147, 0.8);
-$overlay05: rgba(89, 90, 65, 0.8);
-$overlay06: rgba(52, 80, 87, 0.8);
 
 .bg-primary {
   background-color: $primary;
