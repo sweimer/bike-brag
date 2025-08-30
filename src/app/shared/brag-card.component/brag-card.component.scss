@@ -81,6 +81,13 @@
             font-size: 1.1em;
             margin: 10px 0;
 
+            animation: flicker-shadow 2s infinite alternate;
+            border-radius: 5px;
+            box-shadow: 2px 5px 20px 2px;
+            margin: 30px;
+            padding: 24px;
+            width: calc(100% - 120px);
+
             .fa-quote-left {
               font-size: 3.5em;
               margin-right: 8px;
@@ -95,26 +102,21 @@
               margin-left: 16px;
             }
           }
+        }
 
-          .bragcard-tags {
-            margin-top: 16px;
+        .bragcard-tipcard {
 
-            strong {
-              margin-right: 5px;
-            }
+        }
 
-            button {
-              margin-left: 16px;
-            }
+        .bragcard-tags {
+          margin-top: 16px;
+
+          strong {
+            margin-right: 5px;
           }
 
-          .bragcard-tipcard {
-            animation: flicker-shadow 2s infinite alternate;
-            border-radius: 5px;
-            box-shadow: 2px 5px 20px 2px;
-            margin: 30px;
-            padding: 24px;
-            width: calc(100% - 120px);
+          button {
+            margin-left: 16px;
           }
         }
 

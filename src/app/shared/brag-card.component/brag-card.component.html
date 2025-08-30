@@ -34,28 +34,42 @@
               hideArticle[i] ? 'slide-out-left' : 'slide-in-right',
             ]"
           >
-            <div class="bragcard-map-block" [innerHTML]="item.map"></div>
+            <div class="bragcard-map-block" [innerHTML]="item.map">
+            </div>
+
             <div class="bragcard-quote-block">
               <div class="bragcard-date">
                 <strong>{{ item.date }}</strong>
               </div>
+
               <div class="bragcard-quote" *ngIf="item.description">
                 <i class="fa-solid fa-quote-left"></i>
                 {{ item.description }}
-              </div>
-              <div class="bragcard-rider fa-quoteby" *ngIf="item.rider">
+                <div class="bragcard-rider fa-quoteby" *ngIf="item.rider">
                 -
-                <a href="#" (click)="filterByRider(item.rider!); $event.preventDefault()">{{
-                  item.rider
-                }}</a>
-                <button
-                  *ngIf="filteredRider"
-                  (click)="filteredRider = null"
-                  class="clear-rider-filter-btn"
-                >
-                  Clear Rider Filter
-                </button>
+                  <a href="#" (click)="filterByRider(item.rider!); $event.preventDefault()">{{
+                    item.rider
+                  }}</a>
+                  <button
+                    *ngIf="filteredRider"
+                    (click)="filteredRider = null"
+                    class="clear-rider-filter-btn"
+                  >
+                    Clear Rider Filter
+                  </button>
+                </div>
               </div>
+
+              <div class="bragcard-tipcard">
+                <h3><span class="bigger">Brag's</span> Tips for {{ item.location }}</h3>
+                <ul>
+                  <li><a href="https://www.komoot.com/">Forest Park</a>: A 1,300-acre urban gem with paved and gravel trails winding past museums, lakes, and gardens.</li>
+                  <li><a href="https://www.komoot.com/">Meramec Greenway</a>: From Arnold’s Grove to Greentree Park, this 3.6-mile shaded trail hugs the river and is perfect for beginners.</li>
+                  <li><a href="https://www.komoot.com/">Grant’s Trail</a>: An 8-mile rail-to-trail path that’s flat, family-friendly, and connects to the River des Peres Greenway.</li>
+                  <li><a href="https://www.komoot.com/">Greentree Park</a>: Picnic spots, restrooms, and a boat ramp make it a great halfway stop on the Meramec Greenway.</li>
+                </ul>
+              </div>
+
               <div class="bragcard-tags" *ngIf="item.tags">
                 <strong>Tags:</strong>
                 <ng-container *ngFor="let tag of item.tags.split(',')">
@@ -73,15 +87,6 @@
                 >
                   Clear Tag Filter
                 </button>
-              </div>
-              <div class="bragcard-tipcard">
-                <h3><span class="bigger">Brag's</span> Tips for {{ item.location }}</h3>
-                <ul>
-                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                  <li><a href="https://www.komoot.com/">COMING SOON</a></li>
-                </ul>
               </div>
             </div>
           </div>
