@@ -15,6 +15,7 @@ export interface BragItem {
   map: SafeResourceUrl;
   tags?: string;
   rider?: string;
+  tips?: string;
 }
 
 @Component({
@@ -90,6 +91,7 @@ export class BragCardComponent {
             map: this.sanitizer.bypassSecurityTrustHtml(mapHtml),
             tags: item.tags,
             rider: item.rider,
+            tips: item.tips,
           };
         });
         this.iframeVisible = new Array(this.bragItems.length).fill(false);

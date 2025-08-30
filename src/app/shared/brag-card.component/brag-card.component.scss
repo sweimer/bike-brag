@@ -30,19 +30,19 @@
       width: 100%;
 
       .toggle-article-btn {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        z-index: 10;
         background: $black;
+        color: $white;
         border: none;
         box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-        color: $white;
         cursor: pointer;
         font-size: 1.2em;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 32px;
-        writing-mode: vertical-lr;
-        z-index: 2;
+        writing-mode: horizontal-tb;
       }
 
       .bragcard-article-content {

@@ -23,15 +23,17 @@
             class="toggle-article-btn"
             (click)="toggleArticle(i)"
             aria-label="Hide/Show"
-            style="position: absolute; left: 0; top: 0; height: 100%; width: 50px; z-index: 2"
           >
-            <i class="fa-solid" [ngClass]="hideArticle[i] ? 'fa-arrow-right' : 'fa-arrow-left'"></i>
+            <i class="fa-solid" [ngClass]="hideArticle[i] ? 'fa-arrow-down' : 'fa-arrow-up'"></i>
+            <span style="margin-left: 8px;">
+              {{ hideArticle[i] ? 'See Brag' : 'See Picture' }}
+            </span>
           </button>
           <div
             class="bragcard-article-content"
             [ngClass]="[
               'bg-overlay0' + ((i % 6) + 1),
-              hideArticle[i] ? 'slide-out-left' : 'slide-in-right',
+              hideArticle[i] ? 'slide-out-up' : 'slide-in-down',
             ]"
           >
             <div class="bragcard-map-block" [innerHTML]="item.map">
@@ -60,14 +62,9 @@
                 </div>
               </div>
 
-              <div class="bragcard-tipcard">
+              <div class="bragcard-tipcard" *ngIf="item.tips && item.tips.trim()">
                 <h3><span class="bigger">Brag's</span> Tips for {{ item.location }}</h3>
-                <ul>
-                  <li><a href="https://www.komoot.com/">Forest Park</a>: A 1,300-acre urban gem with paved and gravel trails winding past museums, lakes, and gardens.</li>
-                  <li><a href="https://www.komoot.com/">Meramec Greenway</a>: From Arnold’s Grove to Greentree Park, this 3.6-mile shaded trail hugs the river and is perfect for beginners.</li>
-                  <li><a href="https://www.komoot.com/">Grant’s Trail</a>: An 8-mile rail-to-trail path that’s flat, family-friendly, and connects to the River des Peres Greenway.</li>
-                  <li><a href="https://www.komoot.com/">Greentree Park</a>: Picnic spots, restrooms, and a boat ramp make it a great halfway stop on the Meramec Greenway.</li>
-                </ul>
+                <ul [innerHTML]="item.tips"></ul>
               </div>
 
               <div class="bragcard-tags" *ngIf="item.tags">
