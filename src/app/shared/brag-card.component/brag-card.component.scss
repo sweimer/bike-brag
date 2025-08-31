@@ -2,7 +2,9 @@
 
 .bragcard {
   section.bragcard-top {
+    position: relative;
     width: auto;
+    z-index: 5;
 
     article {
       .bragcard-title {
@@ -19,7 +21,7 @@
     padding: 0;
 
     article.bragcard-article-wrapper {
-      border: 1px solid $black;
+      border: none;
       box-shadow: none;
       height: 100%;
       margin: 0;
@@ -28,19 +30,18 @@
       padding: 0;
       position: relative;
       width: 100%;
+      z-index: 10;
 
       .toggle-article-btn {
+        border:none;
+        box-shadow: 0 1px 0 0px;
+        cursor: pointer;
         position: sticky;
         top: 0;
         left: 0;
         width: 100%;
         height: 50px;
         z-index: 10;
-        background: $black;
-        color: $white;
-        border: none;
-        box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
         font-size: 1.2em;
         writing-mode: horizontal-tb;
       }
@@ -53,8 +54,13 @@
         transition:
         transform 0.5s,
         opacity 0.5s;
-        //width: calc(100% - 100px);
+        position: relative;
         will-change: transform, opacity;
+        z-index: 2;
+
+        .bragcard-article-content.slide-out-up {
+          z-index: 0;
+        }
 
         .bragcard-map-block {
           padding: 16px;

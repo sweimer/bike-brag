@@ -6,7 +6,9 @@
   opacity: 1;
   padding: 24px;
   pointer-events: auto;
+  position: relative;
   text-align: center;
+  z-index: 5;
 
   .bragTag {
     .fa {

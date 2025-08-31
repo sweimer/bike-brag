@@ -21,6 +21,7 @@
         <article class="bragcard-article-wrapper" style="position: relative">
           <button
             class="toggle-article-btn"
+            [ngClass]="'bg-primary0' + ((i % 6) + 1)"
             (click)="toggleArticle(i)"
             aria-label="Hide/Show"
           >
