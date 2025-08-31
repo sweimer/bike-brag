@@ -76,11 +76,28 @@ export class BragCardComponent {
         );
         this.bragItems = filtered.map((item: any) => {
           let mapHtml = item.map;
-          // Add title if it's an iframe and doesn't already have one
+          // Add title if missing
           if (mapHtml && mapHtml.includes('<iframe') && !mapHtml.includes('title=')) {
             mapHtml = mapHtml.replace(
               '<iframe',
-              `<iframe title="Map of bike route in ${item.location}"`
+              `<iframe title="Map of ${item.location}"`
+            );
+          }
+          // Add class if missing
+          if (mapHtml && mapHtml.includes('<iframe') && !mapHtml.includes('class=')) {
+            mapHtml = mapHtml.replace(
+              '<iframe',
+              `<iframe class="brag-iframe"`
+            );
+          }
+          // Replace height and width attributes with desired values
+          mapHtml = mapHtml.replace(/\sheight="[^"]*"/gi, ' height="100%"');
+          mapHtml = mapHtml.replace(/\swidth="[^"]*"/gi, ' width="100%"');
+          // Add min-height and max-height as inline style
+          if (mapHtml.includes('<iframe')) {
+            mapHtml = mapHtml.replace(
+              '<iframe',
+              `<iframe style="height:100%;Width:100%;min-height:400px;max-height:700px;max-width: 100%;"`
             );
           }
           return {

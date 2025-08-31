@@ -65,7 +65,12 @@
         .bragcard-map-block {
           padding: 16px;
           width: 40%;
-          iframe {
+
+          iframe.brag-iframe {
+            height: 100% !important;
+            min-height: 400px;
+            max-height: 700px;
+            width: 100% !important;
             max-width: 100%;
           }
         }
@@ -126,11 +131,22 @@
         @media screen and (max-width: 1024px) {
           flex-direction: column;
           gap: 0;
+          padding: 0;
 
-          .bragcard-map-block,
+          .bragcard-date {
+            padding: 0 16px;
+          }
+
+          .bragcard-map-block {
+            position: static;
+            width: 100%;
+            padding: 0;
+          }
+
           .bragcard-quote-block {
             position: static;
             width: 100%;
+            padding: 0;
           }
 
           .bragcard-tipcard {
@@ -138,6 +154,14 @@
             margin: 20px 0 0 0;
             position: static;
             width: 100%;
+
+            h3 {
+              padding: 0 16px;
+            }
+          }
+
+          .bragcard-tags {
+            padding: 16px;
           }
         }
       }
