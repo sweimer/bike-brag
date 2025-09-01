@@ -3,16 +3,18 @@ frontend:
   phases:
     preBuild:
       commands:
+        - cd frontend
         - nvm install 20.19.0
         - nvm use 20.19.0
         - npm ci
     build:
       commands:
+        - cd frontend
         - npm run build
   artifacts:
-    baseDirectory: dist/bike-brag/browser
+    baseDirectory: frontend/dist/bike-brag/browser
     files:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - frontend/node_modules/**/*

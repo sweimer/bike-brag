@@ -1,0 +1,7 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>{{ title }}</h2>
+    <ng-content></ng-content> <!-- This is where chat UI goes -->
+    <button (click)="close()">Close</button>
+  </div>
+</div>
