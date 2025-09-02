@@ -27,7 +27,6 @@ export interface BragItem {
   templateUrl: './brag-card.component.html',
   styleUrl: './brag-card.component.scss',
 })
-
 export class BragCardComponent {
   bragItems: BragItem[] = [];
   visibleCount = 1;
@@ -57,79 +56,61 @@ export class BragCardComponent {
 
   get visibleBragItems() {
     let items = this.bragItems.slice(0, this.visibleCount);
-    if (typeof this.filteredTag === 'string' && this.filteredTag) {
-      const tag = this.filteredTag as string;
-      items = items.filter(
-        (item) =>
-          item.tags &&
-          item.tags
-            .split(',')
-            .map((t) => t.trim())
-            .includes(tag),
+    if (this.filteredTag) {
+      items = items.filter(item =>
+        item.tags?.split(',').map(t => t.trim()).includes(this.filteredTag!)
       );
     }
     if (this.filteredRider) {
-      items = items.filter((item) => item.rider === this.filteredRider);
+      items = items.filter(item => item.rider === this.filteredRider);
     }
     return items;
   }
 
   loadBragItems() {
-  const googleSheetCsvUrl =
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
-  this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
-    Papa.parse(csvData, {
-      header: true,
-      complete: (result: any) => {
-        const filtered = result.data.filter(
-          (item: any) => item.location && item.location.trim() !== '',
-        );
-        this.bragItems = filtered.map((item: any) => {
-          let mapHtml = item.map;
-          // Add title if missing
-          if (mapHtml && mapHtml.includes('<iframe') && !mapHtml.includes('title=')) {
-            mapHtml = mapHtml.replace(
-              '<iframe',
-              `<iframe title="Map of ${item.location}"`
-            );
-          }
-          // Add class if missing
-          if (mapHtml && mapHtml.includes('<iframe') && !mapHtml.includes('class=')) {
-            mapHtml = mapHtml.replace(
-              '<iframe',
-              `<iframe class="brag-iframe"`
-            );
-          }
-          // Replace height and width attributes with desired values
-          mapHtml = mapHtml.replace(/\sheight="[^"]*"/gi, ' height="100%"');
-          mapHtml = mapHtml.replace(/\swidth="[^"]*"/gi, ' width="100%"');
-          // Add min-height and max-height as inline style
-          if (mapHtml.includes('<iframe')) {
-            mapHtml = mapHtml.replace(
-              '<iframe',
-              `<iframe style="height:100%;Width:100%;min-height:400px;max-height:700px;max-width: 100%;"`
-            );
-          }
-          return {
-            location: item.location,
-            date: item.date,
-            description: item.description,
-            image: item.image,
-            map: this.sanitizer.bypassSecurityTrustHtml(mapHtml),
-            tags: item.tags,
-            rider: item.rider,
-            tips: item.tips,
-          };
-        });
-        this.iframeVisible = new Array(this.bragItems.length).fill(false);
-        this.hideArticle = new Array(this.bragItems.length).fill(false);
-        this.loading = false;
-        this.cdr.detectChanges();
-        setTimeout(() => this.observeIframes(), 0);
-      },
+    const googleSheetCsvUrl =
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtxIQ3CN690WZVW6GNIhNBETnwg-yCd1iutLA4MFPklh_JvFYlMZlFKYypaOfLLSMGvSjxAQRKkjQg/pub?output=csv';
+    this.http.get(googleSheetCsvUrl, { responseType: 'text' }).subscribe((csvData: string) => {
+      Papa.parse(csvData, {
+        header: true,
+        complete: (result: any) => {
+          const filtered = result.data.filter((item: any) => item.location?.trim());
+          this.bragItems = filtered.map((item: any) => {
+            let mapHtml = item.map;
+            if (mapHtml?.includes('<iframe')) {
+              if (!mapHtml.includes('title=')) {
+                mapHtml = mapHtml.replace('<iframe', `<iframe title="Map of ${item.location}"`);
+              }
+              if (!mapHtml.includes('class=')) {
+                mapHtml = mapHtml.replace('<iframe', `<iframe class="brag-iframe"`);
+              }
+              mapHtml = mapHtml.replace(/\sheight="[^"]*"/gi, ' height="100%"');
+              mapHtml = mapHtml.replace(/\swidth="[^"]*"/gi, ' width="100%"');
+              mapHtml = mapHtml.replace(
+                '<iframe',
+                `<iframe style="height:100%;width:100%;min-height:400px;max-height:700px;max-width:100%;"`
+              );
+            }
+            return {
+              location: item.location,
+              date: item.date,
+              description: item.description,
+              image: item.image,
+              map: this.sanitizer.bypassSecurityTrustHtml(mapHtml),
+              tags: item.tags,
+              rider: item.rider,
+              tips: item.tips,
+            };
+          });
+          this.iframeVisible = new Array(this.bragItems.length).fill(false);
+          this.hideArticle = new Array(this.bragItems.length).fill(false);
+          this.loading = false;
+          this.cdr.detectChanges();
+          setTimeout(() => this.observeIframes(), 0);
+        },
+      });
     });
-  });
-}
+  }
 
   loadMore() {
     this.visibleCount += 1;
@@ -174,25 +155,10 @@ export class BragCardComponent {
     this.hideArticle[index] = !this.hideArticle[index];
   }
 
-  openAssistant(location: string): void {
-    this.chatSession = {
-      location,
-      threadId: null,
-      messages: [`You’re asking about biking in ${location}. What would you like to know?`]
-    };
-    this.showChatModal = true;
-  }
-
-  openAssistantTab(location: string): void {
-    const query = encodeURIComponent(`Tell me about biking in ${location}`);
-    const url = `https://chat.openai.com/?q=${query}`;
-    window.open(url, '_blank');
-  }
-
   openAssistantModal(location: string): void {
     this.chatSession = {
       location,
-      messages: [`Hi! What would you like to know about biking in ${location}?`],
+      messages: [`ASK BRAG: Hi! What would you like to know about biking in ${location}?`],
       threadId: null
     };
     this.showChatModal = true;
@@ -200,53 +166,40 @@ export class BragCardComponent {
 
   sendMessage(): void {
     const message = this.userMessage.trim();
-    if (!message) {
-      console.warn('No message entered. Skipping send.');
-      return;
-    }
+    if (!message) return;
 
-    console.log('User message:', message);
-    this.chatSession.messages.push(`You: ${message}`);
+    this.chatSession.messages.push(`YOU: ${message}`);
     this.userMessage = '';
 
     this.askAssistant(this.chatSession.location, message).then(reply => {
-      console.log('Assistant reply received:', reply);
-      this.chatSession.messages.push(`Assistant: ${reply}`);
-      this.cdr.detectChanges(); // Ensure modal updates
+      this.chatSession.messages.push(`ASK BRAG: ${reply}`);
+      this.cdr.detectChanges();
     }).catch(err => {
-      console.error('Error during assistant response:', err);
-      this.chatSession.messages.push(`Assistant: Error responding to your question.`);
+      console.error('Assistant error:', err);
+      this.chatSession.messages.push(`ASK BRAG: Sorry, something went wrong.`);
       this.cdr.detectChanges();
     });
   }
 
   async askAssistant(location: string, userMessage: string): Promise<string> {
     const payload = {
+      question: userMessage,
       location,
-      threadId: this.chatSession.threadId // reuse if available
+      threadId: this.chatSession.threadId
     };
 
-    console.log('Sending to Apps Script endpoint:', payload);
-
     try {
-      const response = await fetch(
-        'https://corsproxy.io/?https://script.google.com/macros/s/AKfycbw6cf7ZaKaikuZiq18I2nu-o0FTLi7CEQXRv-T_w_h05Xqm86IgOG_8wQrNsDLFotMb9A/exec',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }
-      );
+      const response = await fetch('/askBrag', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
       const data = await response.json();
-      console.log('Raw response from Apps Script:', data);
-
-      // Save threadId for reuse
-      this.chatSession.threadId = data.threadId;
-
-      return data.tips || 'Sorry, I couldn’t find anything helpful.';
+      this.chatSession.threadId = data.threadId || null;
+      return data.reply || 'Sorry, I couldn’t find anything helpful.';
     } catch (err) {
-      console.error('Fetch error from Apps Script:', err);
+      console.error('Fetch error:', err);
       return 'Error: Assistant failed to respond.';
     }
   }

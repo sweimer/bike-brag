@@ -9,15 +9,44 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
+  .modal-content {
+    background: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 1000px;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+
+    h2 {
+      line-height: 1.1;
+      margin: 16px 0;
+    }
+
+    .chat-window {
+      font-weight: 700;
+
+      .chat-bubble {
+        margin-bottom: 16px;
+      }
+
+      input {
+        margin-bottom: 16px;
+      }
+
+      .powered-by {
+        margin-bottom: 16px;
+      }
+    }
+
+    button {
+
+    }
+  }
 }
 
-.modal-content {
-  background: white;
-  color: black;
-  padding: 1rem;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
+.chat-window {
+      font-weight: 700;
 }

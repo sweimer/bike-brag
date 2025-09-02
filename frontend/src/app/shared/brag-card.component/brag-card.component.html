@@ -66,7 +66,7 @@
               <div class="bragcard-tipcard" *ngIf="item.tips && item.tips.trim()">
                 <i
                   class="bragcard-askbrag-icon fas fa-comments"
-                  title="Ask about biking here"
+                  title="Ask Brag about biking here"
                   (click)="openAssistantModal(item.location)">
                 </i>
 
@@ -77,8 +77,13 @@
                 >
                   <div class="chat-window">
                     <div *ngFor="let msg of chatSession.messages" class="chat-bubble">{{ msg }}</div>
+
                     <input [(ngModel)]="userMessage" placeholder="Type your question..." />
                     <button (click)="sendMessage()">Send</button>
+
+                    <div class="powered-by">
+                      <small>Powered by Ask Brag</small>
+                    </div>
                   </div>
                 </app-modal>
 
